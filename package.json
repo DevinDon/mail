@@ -1,13 +1,10 @@
 {
   "name": "mail",
-  "version": "0.0.0",
+  "version": "2018.11.1",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "watch": "ng serve",
     "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build:prod": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -44,5 +41,17 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.1.1"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:devindon/mail.git"
+  },
+  "keywords": [
+    "angular",
+    "mail-client"
+  ],
+  "author": "Devin Don",
+  "license": "MIT"
 }
