@@ -1,0 +1,25 @@
+<mat-expansion-panel [hideToggle]="false" [expanded]="true">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>文件夹</mat-panel-title>
+    <mat-panel-description>0 封未读</mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-nav-list dense>
+    <mat-list-item *ngFor="let folder of folders">
+      <a mat-line [routerLink]="folder.path">{{ folder.name }}</a>
+    </mat-list-item>
+  </mat-nav-list>
+
+</mat-expansion-panel>
+
+<mat-expansion-panel [hideToggle]="false" expanded>
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>联系人</mat-panel-title>
+    <mat-panel-description>2 人在线</mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <a [routerLink]="[ '/inbox' ]">to inbox</a>
+
+</mat-expansion-panel>
