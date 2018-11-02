@@ -1,0 +1,29 @@
+.dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  background-color: #555;
+  color: white;
+}
+
+.content {
+  flex-grow: 1;
+  margin: 1rem;
+}
+
+.content mat-form-field {
+  width: 100%;
+}
+
+.footer {
+  background-color: white;
+  color: black;
+  height: min-content;
+}
+
+.separator {
+  flex-grow: 1;
+}

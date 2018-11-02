@@ -1,0 +1,40 @@
+<div class="dialog">
+  <mat-toolbar class="header">
+    <h3>新邮件</h3>
+    <div class="separator"></div>
+    <mat-icon>minimize</mat-icon>
+    <mat-icon>close</mat-icon>
+  </mat-toolbar>
+
+  <div class="content">
+    <mat-form-field [hideRequiredMarker]="true">
+      <input matInput required placeholder="收件人" [(ngModel)]="mail.to">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="主题" [(ngModel)]="mail.title">
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <textarea matInput matTextareaAutosize placeholder="邮件正文" matAutosizeMinRows="5" matAutosizeMaxRows="10"
+        [(ngModel)]="mail.context"></textarea>
+    </mat-form-field>
+  </div>
+
+  <mat-toolbar class="footer">
+    <button mat-button matTooltip="列表">
+      <mat-icon>list</mat-icon>
+    </button>
+    <button mat-button matTooltip="删除">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <div class="separator"></div>
+    <button mat-button matTooltip="发送" color="primary">
+      <mat-icon>send</mat-icon>
+    </button>
+    <button mat-button mat-dialog-close matTooltip="取消" color="warn">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+
+</div>
