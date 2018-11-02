@@ -1,5 +1,5 @@
 <!-- 写邮件. -->
-<button mat-raised-button (click)="onClick" color="primary" style="width: -webkit-fill-available; margin: 1rem;">
+<button mat-raised-button (click)="compose()" color="primary" style="width: -webkit-fill-available; margin: 1rem;">
   <mat-icon class="mat-18">add</mat-icon>
   写邮件
 </button>
@@ -16,7 +16,7 @@
   </mat-expansion-panel-header>
 
   <mat-nav-list dense>
-    <a mat-list-item *ngFor="let folder of user.folders" [routerLink]="folder.path">
+    <a mat-list-item *ngFor="let folder of user.folders; trackBy: trackByFn;" [routerLink]="folder.path">
       <mat-icon>{{ folder.icon }}</mat-icon>
       <span matLine>{{ folder.name }}</span>
     </a>
@@ -36,7 +36,7 @@
   </mat-expansion-panel-header>
 
   <mat-nav-list dense>
-    <a mat-list-item *ngFor="let contact of user.contacts" [routerLink]="">
+    <a mat-list-item *ngFor="let contact of user.contacts; trackBy: trackByFn;" [routerLink]="">
       <img matListAvatar [src]="contact.head" [alt]="contact.name">
       <span matLine>{{ contact.name }}</span>
       <button mat-icon-button (click)="undefined">
@@ -59,7 +59,7 @@
   </mat-expansion-panel-header>
 
   <mat-nav-list dense>
-    <a mat-list-item *ngFor="let todoEvent of user.todoEvents" [routerLink]="todoEvent.link">
+    <a mat-list-item *ngFor="let todoEvent of user.todoEvents; trackBy: trackByFn;" [routerLink]="todoEvent.link">
       <span matLine>{{ todoEvent.name }}</span>
       <mat-icon>{{ todoEvent.done ? 'event_available' : now() > todoEvent.time ? 'event_busy' : 'event_note'}}</mat-icon>
     </a>
