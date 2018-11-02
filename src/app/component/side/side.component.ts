@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
-interface Folder {
-  path: string[];
-  name: string;
-}
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-side',
@@ -13,16 +8,14 @@ interface Folder {
 })
 export class SideComponent implements OnInit {
 
-  folders: Folder[];
-
-  constructor() {
-    this.folders = [
-      { path: ['/focus'], name: '重点收件箱' },
-      { path: ['/other'], name: '其他收件箱' },
-      { path: ['/trash'], name: '垃圾箱' }
-    ];
-  }
+  constructor(
+    public user: UserService
+  ) { }
 
   ngOnInit() { }
+
+  now() {
+    return Date.now();
+  }
 
 }

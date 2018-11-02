@@ -1,25 +1,68 @@
-<mat-expansion-panel [hideToggle]="false" [expanded]="true">
+<!-- 写邮件. -->
+<button mat-raised-button (click)="onClick" color="primary" style="width: -webkit-fill-available; margin: 1rem;">
+  <mat-icon class="mat-18">add</mat-icon>
+  写邮件
+</button>
+
+<!-- 文件夹分组. -->
+<mat-expansion-panel expanded>
 
   <mat-expansion-panel-header>
-    <mat-panel-title>文件夹</mat-panel-title>
+    <mat-panel-title>
+      <mat-icon>inbox</mat-icon>
+      文件夹
+    </mat-panel-title>
     <mat-panel-description>0 封未读</mat-panel-description>
   </mat-expansion-panel-header>
 
   <mat-nav-list dense>
-    <mat-list-item *ngFor="let folder of folders">
-      <a mat-line [routerLink]="folder.path">{{ folder.name }}</a>
-    </mat-list-item>
+    <a mat-list-item *ngFor="let folder of user.folders" [routerLink]="folder.path">
+      <mat-icon>{{ folder.icon }}</mat-icon>
+      <span matLine>{{ folder.name }}</span>
+    </a>
   </mat-nav-list>
 
 </mat-expansion-panel>
 
-<mat-expansion-panel [hideToggle]="false" expanded>
+<!-- 联系人分组. -->
+<mat-expansion-panel expanded>
 
   <mat-expansion-panel-header>
-    <mat-panel-title>联系人</mat-panel-title>
+    <mat-panel-title>
+      <mat-icon>person</mat-icon>
+      联系人
+    </mat-panel-title>
     <mat-panel-description>2 人在线</mat-panel-description>
   </mat-expansion-panel-header>
 
-  <a [routerLink]="[ '/inbox' ]">to inbox</a>
+  <mat-nav-list dense>
+    <a mat-list-item *ngFor="let contact of user.contacts" [routerLink]="">
+      <img matListAvatar [src]="contact.head" [alt]="contact.name">
+      <span matLine>{{ contact.name }}</span>
+      <button mat-icon-button (click)="undefined">
+        <mat-icon>email</mat-icon>
+      </button>
+    </a>
+  </mat-nav-list>
+
+</mat-expansion-panel>
+
+<!-- 日程表分组. -->
+<mat-expansion-panel expanded>
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>event</mat-icon>
+      日程表
+    </mat-panel-title>
+    <mat-panel-description>3 待办事件</mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-nav-list dense>
+    <a mat-list-item *ngFor="let todoEvent of user.todoEvents" [routerLink]="todoEvent.link">
+      <span matLine>{{ todoEvent.name }}</span>
+      <mat-icon>{{ todoEvent.done ? 'event_available' : now() > todoEvent.time ? 'event_busy' : 'event_note'}}</mat-icon>
+    </a>
+  </mat-nav-list>
 
 </mat-expansion-panel>
