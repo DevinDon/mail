@@ -18,3 +18,19 @@ export interface ToDoEvents {
   time: Date;
   done: boolean;
 }
+
+/** 邮件. */
+export interface Mail {
+  /** 发件人. */
+  from?: string;
+  /** 收件人. */
+  to?: string;
+  /** 抄送. */
+  cc?: string;
+  /** 密送. */
+  bc?: string;
+  /** 主题. */
+  title?: string;
+  /** 内容. */
+  context?: string;
+}
