@@ -31,9 +31,9 @@ export class UserService {
 
     this.folders = [
       { path: ['folder', 'inbox'], name: '所有邮件', icon: 'folder' },
-      { path: ['folder', 'focus'], name: '重要邮件', icon: 'folder' },
+      { path: ['folder', 'subscription'], name: '订阅邮件', icon: 'subscriptions' },
       { path: ['folder', 'draft'], name: '草稿箱', icon: 'drafts' },
-      { path: ['folder', 'trash'], name: '垃圾箱', icon: 'folder' }
+      { path: ['folder', 'trash'], name: '垃圾箱', icon: 'delete' }
     ];
 
     this.contacts = [
