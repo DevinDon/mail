@@ -1,0 +1,14 @@
+.footer {
+  box-shadow: inset 0px 0.5px 0.5px 0px #aaa;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: fit-content;
+}
+
+.separator {
+  flex-grow: 1;
+}

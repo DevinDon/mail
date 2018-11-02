@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  clock: string;
+
+  constructor() {
+    this.clock = this.getTime(Date.now());
+  }
 
   ngOnInit() {
+    setInterval(() => this.clock = this.getTime(Date.now()), 1000);
+  }
+
+  getTime(time: number): string {
+    const t = new Date(time);
+    return `${t.getHours() < 10 ? '0' : ''}${t.getHours()}:${t.getMinutes() < 10 ? '0' : ''}${t.getMinutes()}:${t.getSeconds() < 10 ? '0' : ''}${t.getSeconds()}`;
   }
 
 }
