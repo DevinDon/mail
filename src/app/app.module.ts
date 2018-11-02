@@ -10,7 +10,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { SideComponent } from './component/side/side.component';
 import { HomeComponent } from './component/home/home.component';
-import { InboxComponent } from './component/inbox/inbox.component';
+import { InboxComponent } from './component/folder/inbox/inbox.component';
 
 @NgModule({
   declarations: [
