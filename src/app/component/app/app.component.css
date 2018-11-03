@@ -1,0 +1,16 @@
+app-header {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+mat-sidenav-container {
+  min-height: calc(100vh - 96px);
+  margin: 64px 0 32px 0;
+}
+
+app-footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+}
