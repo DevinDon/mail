@@ -1,10 +1,9 @@
 {
   "name": "mail",
-  "version": "2018.11.1",
+  "version": "2018.11.4",
   "scripts": {
     "watch": "ng serve",
-    "build": "ng build",
-    "build:prod": "ng build --prod"
+    "build": "ng build --prod"
   },
   "private": false,
   "dependencies": {
