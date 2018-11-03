@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
-import { MatDialog } from '@angular/material';
-import { ComposeDialogComponent } from '../dialog/compose-dialog/compose-dialog.component';
+import { ControllerService } from 'src/app/service/controller.service';
 
 @Component({
   selector: 'app-side',
@@ -12,17 +11,10 @@ export class SideComponent implements OnInit {
 
   constructor(
     public user: UserService,
-    public dialog: MatDialog
+    public controller: ControllerService
   ) { }
 
   ngOnInit() { }
-
-  compose() {
-    this.dialog.open(ComposeDialogComponent, {
-      disableClose: false,
-      panelClass: 'no-padding'
-    });
-  }
 
   now() {
     return Date.now();

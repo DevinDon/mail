@@ -1,5 +1,5 @@
 <!-- 写邮件. -->
-<button mat-raised-button (click)="compose()" color="primary" style="width: -webkit-fill-available; margin: 1rem;">
+<button mat-raised-button (click)="controller.openDialogCompose()" color="primary" style="width: -webkit-fill-available; margin: 1rem;">
   <mat-icon class="mat-18">add</mat-icon>
   写邮件
 </button>
@@ -29,7 +29,7 @@
 
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <mat-icon>person</mat-icon>
+      <mat-icon>person_outline</mat-icon>
       联系人
     </mat-panel-title>
     <mat-panel-description>2 人在线</mat-panel-description>
