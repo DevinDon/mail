@@ -1,6 +1,8 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/siimple/dist/siimple.min.css";
-@import "../node_modules/material-design-icons/iconfont/material-icons.css";
+/* @import "https://fonts.googleapis.com/icon?family=Material+Icons"; */
+/* @import "../node_modules/material-design-icons/iconfont/material-icons.css"; */
+@import "../node_modules/material-icon-offline/style.css";
 
 .no-margin .mat-dialog-container {
   margin: 0;
@@ -13,4 +15,8 @@
 /** 设置滚动条的样式. */
 ::-webkit-scrollbar {
   width: 0;
+}
+
+.separator {
+  flex-grow: 1;
 }
