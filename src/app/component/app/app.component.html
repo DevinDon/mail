@@ -1,12 +1,13 @@
 <app-header></app-header>
 
-<mat-sidenav-container style="flex-grow: 1;">
+<mat-sidenav-container class="separator">
 
-  <mat-sidenav style="min-width: 18rem;" mode="side" opened>
+  <mat-sidenav #sidenav style="min-width: 18rem;" mode="side" opened>
     <app-side></app-side>
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <button mat-button (click)="sidenav.toggle()">test</button>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 
