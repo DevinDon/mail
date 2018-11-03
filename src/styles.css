@@ -4,12 +4,46 @@
 /* @import "../node_modules/material-design-icons/iconfont/material-icons.css"; */
 @import "../node_modules/material-icon-offline/style.css";
 
-.no-margin .mat-dialog-container {
+/** 弹窗无外边距. */
+.no-margin mat-dialog-container {
   margin: 0;
 }
 
-.no-padding .mat-dialog-container {
+/** 弹窗无内边距. */
+.no-padding mat-dialog-container {
   padding: 0;
+}
+
+/** 弹窗无阴影. */
+.no-shadow mat-dialog-container {
+  box-shadow: 0 0;
+}
+
+/** 弹窗适应页面大小. */
+.fit-size mat-dialog-container, .fit-size .dialog {
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  min-width: 100vw;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+/** 仅顶部阴影. */
+.top-shadow, .top-shadow mat-dialog-container {
+  box-shadow: 0px -5px 15px -7px rgba(0,0,0,.2);
+}
+/** 仅右侧阴影. */
+.right-shadow, .right-shadow mat-dialog-container {
+  box-shadow: 5px 0px 15px -7px rgba(0,0,0,.2);
+}
+/** 仅底部阴影. */
+.bottom-shadow, .bottom-shadow mat-dialog-container {
+  box-shadow: 0px 5px 15px -7px rgba(0,0,0,.2);
+}
+/** 仅左侧阴影. */
+.left-shadow, .left-shadow mat-dialog-container {
+  box-shadow: -5px 0px 15px -7px rgba(0,0,0,.2);
 }
 
 /** 设置滚动条的样式. */
