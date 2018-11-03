@@ -12,7 +12,7 @@ export class ComposeDialogComponent implements OnInit {
   mail: Mail;
 
   constructor(
-    private user: UserService
+    public user: UserService
   ) {
     this.mail = {
       from: user.mail

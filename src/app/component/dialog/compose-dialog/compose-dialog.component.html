@@ -2,8 +2,15 @@
   <mat-toolbar class="header">
     <h3>新邮件</h3>
     <div class="separator"></div>
-    <mat-icon>minimize</mat-icon>
-    <mat-icon>close</mat-icon>
+    <!-- <button mat-button matTooltip="最大化">
+      <mat-icon>maximize</mat-icon>
+    </button> -->
+    <button mat-button matTooltip="最小化">
+      <mat-icon>minimize</mat-icon>
+    </button>
+    <button mat-button mat-dialog-close matTooltip="取消">
+      <mat-icon>close</mat-icon>
+    </button>
   </mat-toolbar>
 
   <div class="content">
@@ -16,14 +23,17 @@
     </mat-form-field>
 
     <mat-form-field floatLabel="always">
-      <textarea matInput matTextareaAutosize placeholder="邮件正文" matAutosizeMinRows="5" matAutosizeMaxRows="10"
+      <textarea matInput matTextareaAutosize placeholder="邮件正文" matAutosizeMinRows="7" matAutosizeMaxRows="15"
         [(ngModel)]="mail.context"></textarea>
     </mat-form-field>
   </div>
 
   <mat-toolbar class="footer">
-    <button mat-button matTooltip="列表">
-      <mat-icon>list</mat-icon>
+    <button mat-button matTooltip="存为草稿">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-button matTooltip="添加附件">
+      <mat-icon>attachment</mat-icon>
     </button>
     <button mat-button matTooltip="删除">
       <mat-icon>delete</mat-icon>
@@ -31,9 +41,6 @@
     <div class="separator"></div>
     <button mat-button matTooltip="发送" color="primary">
       <mat-icon>send</mat-icon>
-    </button>
-    <button mat-button mat-dialog-close matTooltip="取消" color="warn">
-      <mat-icon>close</mat-icon>
     </button>
   </mat-toolbar>
 

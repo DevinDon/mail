@@ -7,11 +7,12 @@
 .header {
   background-color: #555;
   color: white;
+  /* height: min-content; */
 }
 
 .content {
   flex-grow: 1;
-  margin: 1rem;
+  margin: 1rem 1rem 0 1rem;
 }
 
 .content mat-form-field {
@@ -21,9 +22,5 @@
 .footer {
   background-color: white;
   color: black;
-  height: min-content;
-}
-
-.separator {
-  flex-grow: 1;
+  /* height: min-content; */
 }
