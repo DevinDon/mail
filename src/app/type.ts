@@ -34,3 +34,8 @@ export interface Mail {
   /** 内容. */
   context?: string;
 }
+
+export interface DeviceType {
+  type: 'desktop' | 'table' | 'mobile';
+  size: 's' | 'm' | 'l';
+}
