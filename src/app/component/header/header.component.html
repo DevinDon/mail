@@ -1,17 +1,20 @@
 <mat-toolbar class="header bottom-shadow">
 
-  <button mat-button (click)="controller.sideToggle()">
-    <mat-icon>list</mat-icon>
+  <!-- <button mat-button (click)="controller.sideToggle()">
+    <mat-icon>menu</mat-icon>
+  </button> -->
+  <button mat-icon-button (click)="controller.sideToggle()">
+    <mat-icon>menu</mat-icon>
   </button>
 
   <mat-icon>mail_outline</mat-icon>
   <h1>邮箱</h1>
 
+  <div class="separator"></div>
+
   <button mat-button>
     <mat-icon>person</mat-icon>
     {{ user.name }}
   </button>
-
-  <div class="separator"></div>
 
 </mat-toolbar>
