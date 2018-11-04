@@ -2,12 +2,11 @@
 
 <mat-sidenav-container class="separator">
 
-  <mat-sidenav #sidenav style="min-width: 18rem;" mode="side" opened>
+  <mat-sidenav #sidenav style="min-width: 18rem;" mode="side" [opened]="controller.device.type === 'desktop'">
     <app-side></app-side>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <button mat-button (click)="sidenav.toggle()">test</button>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 

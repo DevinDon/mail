@@ -7,12 +7,12 @@ import { ControllerService } from 'src/app/service/controller.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
 
+  /** 侧边栏. */
   @ViewChild('sidenav')
-  public sidenav: MatSidenav;
-
-  title = 'Mail';
+  private sidenav: MatSidenav;
 
   constructor(
     private controller: ControllerService
