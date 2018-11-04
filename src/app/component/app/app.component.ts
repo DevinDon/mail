@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   private sidenav: MatSidenav;
 
   constructor(
-    private controller: ControllerService
+    public controller: ControllerService
   ) { }
 
   ngOnInit() {
