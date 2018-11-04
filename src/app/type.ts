@@ -35,7 +35,30 @@ export interface Mail {
   context?: string;
 }
 
+/** 设备类型. */
 export interface DeviceType {
   type: 'desktop' | 'table' | 'mobile';
   size: 's' | 'm' | 'l';
+}
+
+/** 根据不同的设备选择不同的设置. */
+export interface DeviceConfig<T> {
+  desktop?: {
+    s?: T;
+    m?: T;
+    l?: T;
+    default: T;
+  };
+  table?: {
+    s?: T;
+    m?: T;
+    l?: T;
+    default: T;
+  };
+  mobile?: {
+    s?: T;
+    m?: T;
+    l?: T;
+    default: T;
+  };
 }
