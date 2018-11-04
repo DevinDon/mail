@@ -1,7 +1,8 @@
 import { MatDialogConfig } from '@angular/material';
-import { Mail, DeviceConfig } from './type';
+import { Mail, DeviceConfig, Device } from './type';
 
-export const composeDialogConfig: DeviceConfig<MatDialogConfig<Mail>> = {
+/** 新邮件窗口配置. */
+const composeDialogConfig: DeviceConfig<MatDialogConfig<Mail>> = {
   desktop: {
     default: {
       autoFocus: false,
@@ -43,3 +44,14 @@ export const composeDialogConfig: DeviceConfig<MatDialogConfig<Mail>> = {
     }
   }
 };
+
+/**
+ * 根据设备类型选择新邮件窗口配置.
+ * @param device 设备类型信息.
+ * @param data 邮件数据.
+ */
+export function getComposeDialogConfig(device: Device, data?: Mail): MatDialogConfig<Mail> {
+  const config = composeDialogConfig[device.type][device.size] || composeDialogConfig[device.type].default;
+  config.data = data;
+  return config;
+}
