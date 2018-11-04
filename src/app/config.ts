@@ -23,10 +23,11 @@ const composeDialogConfig: DeviceConfig<MatDialogConfig<Mail>> = {
       hasBackdrop: false,
       panelClass: [
         'no-padding',
-        'top-shadow',
-        'left-shadow'
+        'full-size'
       ],
-      position: { right: '0', bottom: '0' }
+      width: '100vw',
+      height: '100vh',
+      position: { top: '0', left: '0' }
     }
   },
   mobile: {
@@ -50,7 +51,7 @@ const composeDialogConfig: DeviceConfig<MatDialogConfig<Mail>> = {
  * @param device 设备类型信息.
  * @param data 邮件数据.
  */
-export function getComposeDialogConfig(device: Device, data?: Mail): MatDialogConfig<Mail> {
+export function getComposeDialogConfig(device: Device, data: Mail = {}): MatDialogConfig<Mail> {
   const config = composeDialogConfig[device.type][device.size] || composeDialogConfig[device.type].default;
   config.data = data;
   return config;
