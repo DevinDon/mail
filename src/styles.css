@@ -19,8 +19,8 @@
   box-shadow: 0 0;
 }
 
-/** 弹窗适应页面大小. */
-.fit-size mat-dialog-container, .fit-size .dialog {
+/** 弹窗占据窗口大小. */
+.full-size mat-dialog-container, .full-size .dialog {
   min-height: 100vh;
   height: 100vh;
   max-height: 100vh;
