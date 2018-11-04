@@ -16,7 +16,7 @@ export class SideComponent implements OnInit {
 
   ngOnInit() { }
 
-  now() {
+  now(): number {
     return Date.now();
   }
 

@@ -50,9 +50,9 @@ export class UserService {
     ];
 
     this.todoEvents = [
-      { name: '买牛奶', time: new Date('2018.1.11 10:00:00'), done: false },
-      { name: '开会', time: new Date('2018.12.31 12:30:00'), done: false },
-      { name: '学习', time: new Date('2018.12.31 12:30:00'), done: true }
+      { name: '买牛奶', time: new Date('2018.1.11 10:00:00').getTime(), done: false },
+      { name: '开会', time: new Date('2018.12.31 12:30:00').getTime(), done: false },
+      { name: '学习', time: new Date('2018.12.31 12:30:00').getTime(), done: true }
     ];
 
   }

@@ -15,7 +15,7 @@ export interface Contact {
 /** 待办事件. */
 export interface ToDoEvents {
   name: string;
-  time: Date;
+  time: number;
   done: boolean;
 }
 

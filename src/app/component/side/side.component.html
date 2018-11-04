@@ -55,11 +55,11 @@
       <mat-icon>event</mat-icon>
       日程表
     </mat-panel-title>
-    <mat-panel-description>3 待办事件</mat-panel-description>
+    <mat-panel-description>1 待办事件</mat-panel-description>
   </mat-expansion-panel-header>
 
   <mat-nav-list dense>
-    <a mat-list-item *ngFor="let todoEvent of user.todoEvents; trackBy: trackByFn;" [routerLink]="todoEvent.link">
+    <a mat-list-item *ngFor="let todoEvent of user.todoEvents; trackBy: trackByFn;" [routerLink]="['todoevent', todoEvent.name + todoEvent.time]">
       <span matLine>{{ todoEvent.name }}</span>
       <mat-icon>{{ todoEvent.done ? 'event_available' : now() > todoEvent.time ? 'event_busy' : 'event_note'}}</mat-icon>
     </a>
