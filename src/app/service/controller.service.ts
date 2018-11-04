@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ComposeDialogComponent } from '../component/dialog/compose-dialog/compose-dialog.component';
-import { Mail, DeviceType } from '../type';
+import { Mail, Device } from '../type';
 import { Subject, fromEvent } from 'rxjs';
-import { composeDialogConfig } from '../config';
+import { getComposeDialogConfig } from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { composeDialogConfig } from '../config';
 export class ControllerService {
 
   /** 设备类型及屏幕尺寸. */
-  public deviceType: DeviceType;
+  public device: Device;
   /** 组件通讯服务: 侧边导航栏展开 / 关闭. */
   public observableSidenavToggle: Subject<string>;
 
@@ -19,15 +19,15 @@ export class ControllerService {
     private dialog: MatDialog
   ) {
     this.observableSidenavToggle = new Subject<string>();
-    this.deviceType = this.getDeviceType();
-    fromEvent(window, 'resize').subscribe(event => this.deviceType = this.getDeviceType());
+    this.device = this.getDeviceType();
+    fromEvent(window, 'resize').subscribe(event => this.device = this.getDeviceType());
   }
 
   /**
    * 获取设备类型及屏幕尺寸.
    * @returns 设备类型及屏幕尺寸.
    */
-  getDeviceType(): DeviceType {
+  getDeviceType(): Device {
     if (innerWidth <= 320) { // 小屏手机
       return { type: 'mobile', size: 's' };
     } else if (innerWidth <= 375) { // 中屏手机
@@ -54,7 +54,7 @@ export class ControllerService {
    * @param mail 邮件内容.
    */
   openDialogCompose(mail?: Mail): void {
-    this.dialog.open(ComposeDialogComponent, composeDialogConfig[this.deviceType.type].default);
+    this.dialog.open(ComposeDialogComponent, getComposeDialogConfig(this.device, mail));
   }
 
   /**

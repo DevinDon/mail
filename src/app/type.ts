@@ -36,7 +36,7 @@ export interface Mail {
 }
 
 /** 设备类型. */
-export interface DeviceType {
+export interface Device {
   type: 'desktop' | 'table' | 'mobile';
   size: 's' | 'm' | 'l';
 }
