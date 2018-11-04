@@ -1,7 +1,5 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import "../node_modules/siimple/dist/siimple.min.css";
 /* @import "https://fonts.googleapis.com/icon?family=Material+Icons"; */
-/* @import "../node_modules/material-design-icons/iconfont/material-icons.css"; */
 @import "../node_modules/material-icon-offline/style.css";
 
 /** 弹窗无外边距. */
