@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Mail } from '../../../type';
 import { UserService } from 'src/app/service/user.service';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-compose-dialog',
@@ -9,15 +10,10 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ComposeDialogComponent implements OnInit {
 
-  mail: Mail;
-
   constructor(
-    public user: UserService
-  ) {
-    this.mail = {
-      from: user.mail
-    };
-  }
+    public user: UserService,
+    @Inject(MAT_DIALOG_DATA) public mail: Mail
+  ) { }
 
   ngOnInit() { }
 
