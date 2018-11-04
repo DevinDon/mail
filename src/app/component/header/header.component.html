@@ -1,20 +1,42 @@
 <mat-toolbar class="header bottom-shadow">
 
-  <!-- <button mat-button (click)="controller.sideToggle()">
-    <mat-icon>menu</mat-icon>
-  </button> -->
   <button mat-icon-button (click)="controller.sideToggle()">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <mat-icon>mail_outline</mat-icon>
-  <h1>邮箱</h1>
+  <a mat-button class="home" [routerLink]="[ '/' ]">
+    <mat-icon>mail_outline</mat-icon>
+    <span>邮箱</span>
+  </a>
 
   <div class="separator"></div>
 
-  <button mat-button>
-    <mat-icon>person</mat-icon>
-    {{ user.name }}
+  <button mat-button [matMenuTriggerFor]="userMenu" #userMenuTrigger="matMenuTrigger">
+    <img matListAvatar src="assets/user.jpg" width="48px" height="48px">
   </button>
+
+  <mat-menu #userMenu="matMenu">
+
+    <button mat-menu-item>
+      <mat-icon>sync</mat-icon>
+      <span>刷新页面</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>info</mat-icon>
+      <span>个人信息</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>应用设置</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span>退出登录</span>
+    </button>
+
+  </mat-menu>
 
 </mat-toolbar>
