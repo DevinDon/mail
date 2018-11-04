@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
 
 .header {
   background-color: #555;
   color: white;
-  /* height: min-content; */
 }
 
 .content {
@@ -22,5 +22,4 @@
 .footer {
   background-color: white;
   color: black;
-  /* height: min-content; */
 }
