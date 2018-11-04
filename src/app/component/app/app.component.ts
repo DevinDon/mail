@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { ControllerService } from 'src/app/service/controller.service';
 
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.controller.toggle.subscribe(v => {
+    this.controller.observableSidenavToggle.subscribe(v => {
       switch (v) {
         case 'toggle': this.sidenav.toggle(); break;
         case 'open': this.sidenav.open(); break;
