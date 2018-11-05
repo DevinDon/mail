@@ -2,6 +2,11 @@
 /* @import "https://fonts.googleapis.com/icon?family=Material+Icons"; */
 @import "../node_modules/material-icon-offline/style.css";
 
+/** 去除默认边框. */
+body {
+  margin: 0;
+}
+
 /** 弹窗无外边距. */
 .no-margin mat-dialog-container {
   margin: 0;
