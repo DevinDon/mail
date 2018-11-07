@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ComposeDialogComponent } from '../component/dialog/compose-dialog/compose-dialog.component';
-import { Mail, Device } from '../type';
+import { Mail, Device } from '../others/type';
 import { Subject, fromEvent } from 'rxjs';
-import { getComposeDialogConfig } from '../config';
+import { getComposeDialogConfig } from '../others/config';
 
 @Injectable({
   providedIn: 'root'

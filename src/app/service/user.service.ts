@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Folder, Contact, ToDoEvents } from '../type';
+import { Folder, Contact, ToDoEvents } from '../others/type';
 
 @Injectable({
   providedIn: 'root'
