@@ -1,16 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-
-import { MatModule } from './module/mat.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './component/app/app.component';
-import { HeaderComponent } from './component/header/header.component';
-import { FooterComponent } from './component/footer/footer.component';
-import { SideComponent } from './component/side/side.component';
-import { HomeComponent } from './component/home/home.component';
 import { InboxComponent } from './component/folder/inbox/inbox.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { HeaderComponent } from './component/header/header.component';
+import { HomeComponent } from './component/home/home.component';
+import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+import { SideComponent } from './component/side/side.component';
 import { DialogModule } from './module/dialog.module';
+import { MatModule } from './module/mat.module';
 import { OtherModule } from './module/other.module';
+import { RoutingModule } from './module/routing.module';
+
 
 @NgModule({
   declarations: [
@@ -19,11 +20,12 @@ import { OtherModule } from './module/other.module';
     FooterComponent,
     SideComponent,
     HomeComponent,
-    InboxComponent
+    InboxComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RoutingModule,
     MatModule,
     DialogModule,
     OtherModule
