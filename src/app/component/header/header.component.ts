@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { ControllerService } from 'src/app/service/controller.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
-import { fromTransFromTopToBottomIn, TimeLine, fromOpaqueFromBottomToTopOut } from 'src/app/animation';
+import { fromTransFromTopToBottomIn, TimeLine, fromOpaqueFromBottomToTopOut } from 'src/app/others/animation';
 
 @Component({
   selector: 'app-header',

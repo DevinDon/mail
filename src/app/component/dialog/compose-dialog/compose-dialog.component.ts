@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Mail } from '../../../type';
+import { Mail } from '../../../others/type';
 import { UserService } from 'src/app/service/user.service';
 import { MAT_DIALOG_DATA } from '@angular/material';
 

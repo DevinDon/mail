@@ -1,6 +1,6 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { TimeLine, fromTransFromBottomToTopIn, fromOpaqueFromTopToBottomOut } from 'src/app/animation';
+import { TimeLine, fromTransFromBottomToTopIn, fromOpaqueFromTopToBottomOut } from 'src/app/others/animation';
 
 @Component({
   selector: 'app-footer',

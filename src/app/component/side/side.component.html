@@ -36,7 +36,7 @@
   </mat-expansion-panel-header>
 
   <mat-nav-list dense>
-    <a mat-list-item *ngFor="let contact of user.contacts; trackBy: trackByFn;" [routerLink]="">
+    <a mat-list-item *ngFor="let contact of user.contacts; trackBy: trackByFn;" [routerLink]="contact.name">
       <img matListAvatar [src]="contact.head" [alt]="contact.name">
       <span matLine>{{ contact.name }}</span>
       <button mat-icon-button (click)="undefined">
