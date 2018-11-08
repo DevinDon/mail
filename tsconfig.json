@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "exception-page": [
+        "dist/exception-page"
+      ],
+      "exception-page/*": [
+        "dist/exception-page/*"
+      ]
+    }
   }
 }

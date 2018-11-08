@@ -129,6 +129,41 @@
           }
         }
       }
+    },
+    "exception-page": {
+      "root": "projects/exception-page",
+      "sourceRoot": "projects/exception-page/src",
+      "projectType": "library",
+      "prefix": "uni",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/exception-page/tsconfig.lib.json",
+            "project": "projects/exception-page/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/exception-page/src/test.ts",
+            "tsConfig": "projects/exception-page/tsconfig.spec.json",
+            "karmaConfig": "projects/exception-page/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/exception-page/tsconfig.lib.json",
+              "projects/exception-page/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "mail"
