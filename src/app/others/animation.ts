@@ -1,4 +1,4 @@
-import { animate, animation, style } from '@angular/animations';
+import { animate, animation, style, group, query, trigger, useAnimation, transition } from '@angular/animations';
 
 /** 预设的时间线. */
 export const TimeLine = {
@@ -104,4 +104,27 @@ export const fromOpaqueFromRightToLeftOut = animation([
     transform: 'translateX(-25%)',
     opacity: 0
   }))
+]);
+
+/** 透明 => 不透明, 入场. */
+export const fromTransIn = animation([
+  style({ opacity: 0 }),
+  animate('{{ time }}', style({ opacity: 1 }))
+]);
+
+/** 不透明 => 透明, 出厂. */
+export const fromOpaqueOut = animation([
+  style({ opacity: 1 }),
+  animate('{{ time }}', style({ opacity: 0 }))
+]);
+
+/** 渐变动画. */
+export const transAnimation = trigger('transAnimation', [
+  transition('* <=> *', [useAnimation(fromTransIn, { params: { time: TimeLine.in } })])
+]);
+
+/** 暂时禁用, 路由动画. */
+export const routeAnimation = trigger('routeAnimation', [
+  transition(':enter', [useAnimation(fromTransIn, { params: { time: TimeLine.in } })]),
+  transition(':leave', [useAnimation(fromOpaqueOut, { params: { time: TimeLine.out } })])
 ]);
