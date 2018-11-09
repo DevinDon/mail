@@ -1,16 +1,16 @@
-<app-header></app-header>
+<app-header [@header]="headerAnimationState"></app-header>
 
 <mat-sidenav-container class="container separator">
 
-  <mat-sidenav #sidenav style="min-width: 18rem;" mode="side" [opened]="controller.device.type === 'desktop'"
-    [@content]="'left'">
+  <mat-sidenav #sidenav style="min-width: 18rem;" [mode]="controller.device.type === 'desktop' ? 'side' : 'over'"
+    [opened]="controller.device.type === 'desktop'" [@content]="controller.device.type === 'desktop' ? 'left' : ''">
     <app-side></app-side>
   </mat-sidenav>
 
-  <mat-sidenav-content [@content]="'right'" [@router]="page">
+  <mat-sidenav-content [@content]="contentAnimationState">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
 
-<app-footer></app-footer>
+<app-footer [@footer]="footerAnimationState"></app-footer>
