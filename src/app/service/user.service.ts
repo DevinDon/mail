@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Folder, Contact, ToDoEvents } from '../others/type';
+import { Router } from '@angular/router';
+import { Contact, Folder, ToDoEvents, UserInfo } from '../others/type';
+import { ROUTERLIST } from '../others/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  /** 用户 ID. */
-  public id: number;
-  /** 用户名. */
-  public name: string;
-  /** 用户邮箱地址. */
-  public mail: string;
+  /** 用户信息. */
+  private info: UserInfo;
 
   /** 文件夹. */
   public folders: Folder[];
@@ -20,20 +18,42 @@ export class UserService {
   /** 日程. */
   public todoEvents: ToDoEvents[];
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
+    this.info = {};
     this.folders = [];
     this.contacts = [];
     this.todoEvents = [];
     this.mock();
   }
 
+  signIn(userInfo: UserInfo) {
+    // api.signIn(userInfo).subscription(r => this.info = r.success ? userInfo : {});
+    this.info = userInfo; // dev only
+  }
+
+  signUp(userInfo: UserInfo) {
+    // api.signUp(userInfo).subscription(r => this.info = r.success ? userInfo : {});
+    this.info = userInfo; // dev only
+  }
+
+  signOut() {
+    this.info = {};
+    this.router.navigate(ROUTERLIST.signout);
+  }
+
+  isSignIn() {
+    return (this.info && this.info.id) ? true : false;
+  }
+
   mock() {
 
     this.folders = [
-      { path: ['folder', 'inbox'], name: '所有邮件', icon: 'mail' },
-      { path: ['folder', 'subscription'], name: '订阅邮件', icon: 'subscriptions' },
-      { path: ['folder', 'draft'], name: '草稿箱', icon: 'drafts' },
-      { path: ['folder', 'trash'], name: '垃圾箱', icon: 'delete' }
+      { path: ROUTERLIST.inbox, name: '所有邮件', icon: 'mail' },
+      { path: ROUTERLIST.subscription, name: '订阅邮件', icon: 'subscriptions' },
+      { path: ROUTERLIST.draft, name: '草稿箱', icon: 'drafts' },
+      { path: ROUTERLIST.trash, name: '垃圾箱', icon: 'delete' }
     ];
 
     this.contacts = [
