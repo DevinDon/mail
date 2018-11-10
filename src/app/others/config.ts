@@ -1,5 +1,5 @@
 import { MatDialogConfig } from '@angular/material';
-import { Mail, DeviceConfig, Device } from './type';
+import { Mail, DeviceConfig, Device, Server } from './type';
 
 /** 新邮件窗口配置. */
 const composeDialogConfig: DeviceConfig<MatDialogConfig<Mail>> = {
@@ -56,3 +56,22 @@ export function getComposeDialogConfig(device: Device, data: Mail = {}): MatDial
   config.data = data;
   return config;
 }
+
+/** 服务器信息. */
+export const SERVER: Server = {
+  PROTOCOL: 'https',
+  HOST: 'api.don.red',
+  VERSION: 'v1',
+  toURL: (path = '') => `${SERVER.PROTOCOL}://${SERVER.HOST}${SERVER.PORT ? ':' : ''}${SERVER.PORT}/${SERVER.VERSION}${path}`
+};
+
+export const ROUTERLIST = {
+  home: ['/home'],
+  inbox: ['/folder/inbox'],
+  subscription: ['/folder/subscription'],
+  draft: ['/folder/draft'],
+  trash: ['/folder/trash'],
+  signin: ['/sign/in'],
+  signout: ['/sign/out'],
+  signup: ['/sign/up']
+};
