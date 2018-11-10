@@ -5,6 +5,10 @@ app-header {
   z-index: 10;
 }
 
+mat-sidenav {
+  min-width: 18rem;
+}
+
 mat-sidenav-container {
   min-height: calc(100vh - 100px);
   margin: 64px 0 36px 0;
