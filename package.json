@@ -1,11 +1,16 @@
 {
   "name": "mail",
+  "icon": "src/assets/favicon.png",
   "version": "2018.11.10",
+  "description": "Angular mail client.",
+  "author": "Devin Don",
+  "license": "MIT",
   "scripts": {
     "watch": "ng serve",
     "build": "ng build --prod --base-href=. --output-path=dist/mail/",
-    "build:all": "npm run build && npm run build:demo && npm run build:root",
+    "build:all": "npm run build:project && npm run build && npm run build:demo && npm run build:root",
     "build:demo": "ng build --prod --base-href=/mail/ --output-path=dist/demo/",
+    "build:project": "ng build exception-page",
     "build:root": "ng build --prod --base-href=/ --output-path=dist/root/"
   },
   "private": false,
@@ -51,15 +56,13 @@
     "tslint": "~5.11.0",
     "typescript": "~3.1.6"
   },
-  "description": "Angular mail client.",
   "repository": {
     "type": "git",
     "url": "git@gitee.com:devindon/mail.git"
   },
+  "homepage": "https://gitee.com/devindon/mail",
   "keywords": [
     "angular",
     "mail-client"
-  ],
-  "author": "Devin Don",
-  "license": "MIT"
+  ]
 }
