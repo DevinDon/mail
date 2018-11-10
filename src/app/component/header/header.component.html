@@ -1,10 +1,10 @@
 <mat-toolbar class="header bottom-shadow">
 
-  <button mat-icon-button (click)="controller.sideToggle()">
+  <button mat-icon-button (click)="controller.sidenavShould()">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <a mat-button class="home" [routerLink]="[ '/' ]">
+  <a mat-button class="home" [routerLink]="routerList.home">
     <mat-icon>mail_outline</mat-icon>
     <span>邮箱</span>
   </a>
@@ -32,7 +32,7 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-menu-item>
+    <button mat-menu-item (click)="user.signOut()">
       <mat-icon>exit_to_app</mat-icon>
       <span>退出登录</span>
     </button>
