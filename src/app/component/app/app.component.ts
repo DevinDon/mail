@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { fromOpaqueFromBottomToTopOut, fromOpaqueFromRightToLeftOut, fromOpaqueFromTopToBottomOut, fromTransFromBottomToTopIn, fromTransFromLeftToRightIn, fromTransFromRightToLeftIn, fromTransFromTopToBottomIn, TimeLine, fromOpaqueOut, fromTransIn } from 'src/app/others/animation';
 import { ControllerService } from 'src/app/service/controller.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +41,8 @@ export class AppComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public router: Router,
-    public controller: ControllerService
+    public controller: ControllerService,
+    public user: UserService
   ) {
     this.headerAnimationState = 'here';
     this.contentAnimationState = 'right';
@@ -48,7 +50,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.controller.observableSidenavToggle.subscribe(v => {
+    this.controller.sidenavSubscribe(v => {
       switch (v) {
         case 'toggle': this.sidenav.toggle(); break;
         case 'open': this.sidenav.open(); break;
@@ -59,7 +61,8 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.router.events.subscribe(event => {
         if (event instanceof RoutesRecognized) {
-          this.contentAnimationState = event.state.root.firstChild.data['animation'];
+          // this.contentAnimationState = event.state.root.firstChild.data['animation'];
+          this.contentAnimationState = Date.now().toString();
         }
       });
     }, 1500);
