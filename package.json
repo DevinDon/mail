@@ -1,9 +1,12 @@
 {
   "name": "mail",
-  "version": "2018.11.4",
+  "version": "2018.11.10",
   "scripts": {
     "watch": "ng serve",
-    "build": "ng build --prod"
+    "build": "ng build --prod --base-href=. --output-path=dist/mail/",
+    "build:all": "npm run build && npm run build:demo && npm run build:root",
+    "build:demo": "ng build --prod --base-href=/mail/ --output-path=dist/demo/",
+    "build:root": "ng build --prod --base-href=/ --output-path=dist/root/"
   },
   "private": false,
   "dependencies": {
@@ -49,7 +52,6 @@
     "typescript": "~3.1.6"
   },
   "description": "Angular mail client.",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git@gitee.com:devindon/mail.git"
