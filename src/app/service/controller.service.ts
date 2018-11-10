@@ -11,16 +11,16 @@ import { getComposeDialogConfig } from '../others/config';
 export class ControllerService {
 
   /** 设备类型及屏幕尺寸. */
-  public device: Device;
+  private device: Device;
   /** 组件通讯服务: 侧边导航栏展开 / 关闭. */
-  public observableSidenavToggle: Subject<string>;
+  private observableSidenavToggle: Subject<string>;
 
   constructor(
     private dialog: MatDialog
   ) {
     this.observableSidenavToggle = new Subject<string>();
     this.device = this.getDeviceType();
-    fromEvent(window, 'resize').subscribe(event => this.device = this.getDeviceType());
+    fromEvent(window, 'resize').subscribe(e => this.device = this.getDeviceType());
   }
 
   /**
@@ -50,6 +50,15 @@ export class ControllerService {
   }
 
   /**
+   * 判断设备是否为指定类型.
+   * @param type 设备类型 (desktop | table | mobile)
+   * @returns boolean
+   */
+  deviceTypeIs(type: 'desktop' | 'table' | 'mobile'): boolean {
+    return this.device.type === type;
+  }
+
+  /**
    * 新邮件窗口.
    * @param mail 邮件内容.
    */
@@ -58,10 +67,18 @@ export class ControllerService {
   }
 
   /**
+   * 侧边导航栏的操作处理.
+   * @param fn 回调函数, 用于执行指令对侧边导航栏进行操作.
+   */
+  sidenavSubscribe(fn): void {
+    this.observableSidenavToggle.subscribe(fn);
+  }
+
+  /**
    * 开启或关闭侧边导航栏.
    * @param tag 对侧边导航栏进行的操作.
    */
-  sideToggle(tag: string = 'toggle'): void {
+  sidenavShould(tag: string = 'toggle'): void {
     this.observableSidenavToggle.next(tag);
   }
 
