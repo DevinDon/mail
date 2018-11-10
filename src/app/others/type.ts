@@ -62,3 +62,37 @@ export interface DeviceConfig<T> {
     default: T;
   };
 }
+
+/** 用户信息. */
+export interface UserInfo {
+  /** 用户 ID. */
+  id?: number;
+  /** 用户名. */
+  name?: string;
+  /** 用户邮箱地址. */
+  email?: string;
+}
+
+/** 服务器信息. */
+export interface Server {
+  /** 通讯协议. */
+  PROTOCOL: string;
+  /** 主机名. */
+  HOST: string;
+  /** 主机端口. */
+  PORT?: number;
+  /** API 版本. */
+  VERSION: string;
+  /**
+   * URL 地址.
+   * @param path API 路径, 带斜杠 / .
+   */
+  toURL(path: string): string;
+}
+
+/** API 返回数据的格式. */
+export interface Response<T = string> {
+  code: number;
+  state: boolean;
+  data: T;
+}
