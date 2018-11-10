@@ -1,8 +1,8 @@
-import { transition, trigger, useAnimation, query, group, style, animate, animateChild } from '@angular/animations';
+import { transition, trigger, useAnimation, animate, style, keyframes } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
-import { fromOpaqueFromBottomToTopOut, fromOpaqueFromRightToLeftOut, fromOpaqueFromTopToBottomOut, fromTransFromBottomToTopIn, fromTransFromLeftToRightIn, fromTransFromRightToLeftIn, fromTransFromTopToBottomIn, TimeLine, fromOpaqueOut, fromTransIn } from 'src/app/others/animation';
+import { fromOpaqueFromBottomToTopOut, fromOpaqueFromTopToBottomOut, fromTransFromBottomToTopIn, fromTransFromLeftToRightIn, fromTransFromRightToLeftIn, fromTransFromTopToBottomIn, fromTransIn, TimeLine } from 'src/app/others/animation';
 import { ControllerService } from 'src/app/service/controller.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -15,9 +15,28 @@ import { UserService } from 'src/app/service/user.service';
       transition(':enter', [useAnimation(fromTransFromTopToBottomIn, { params: { time: TimeLine.delayIn } })]),
       transition(':leave', [useAnimation(fromOpaqueFromBottomToTopOut, { params: { time: TimeLine.delayOut } })])
     ]),
+    trigger('container', [
+      transition('full => part', [
+        animate('2s', keyframes([
+          style({ padding: '0', opacity: 1, offset: 0 }),
+          style({ padding: '0', opacity: 0, offset: 0.25 }),
+          style({ padding: '32px 0 18px 0', opacity: 0, offset: 0.5 }),
+          style({ padding: '64px 0 36px 0', opacity: 1, offset: 1 })
+        ]))
+      ]),
+      transition('part => full', [
+        animate('2s', keyframes([
+          style({ padding: '64px 0 36px 0', opacity: 1, offset: 0 }),
+          style({ padding: '64px 0 36px 0', opacity: 0, offset: 0.25 }),
+          style({ padding: '0', opacity: 0, offset: 0.5 }),
+          style({ padding: '0', opacity: 1, offset: 1 })
+        ]))
+      ])
+    ]),
     trigger('content', [
       transition('void => left', [useAnimation(fromTransFromLeftToRightIn, { params: { time: TimeLine.delayIn } })]),
       transition('void => right', [useAnimation(fromTransFromRightToLeftIn, { params: { time: TimeLine.delayIn } })]),
+      transition('void => top', [useAnimation(fromTransFromTopToBottomIn, { params: { time: TimeLine.delayIn } })]),
       transition('* => *', [useAnimation(fromTransIn, { params: { time: TimeLine.in } })])
     ]),
     trigger('footer', [
@@ -45,7 +64,7 @@ export class AppComponent implements OnInit {
     public user: UserService
   ) {
     this.headerAnimationState = 'here';
-    this.contentAnimationState = 'right';
+    this.contentAnimationState = 'top';
     this.footerAnimationState = 'here';
   }
 
@@ -61,7 +80,6 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.router.events.subscribe(event => {
         if (event instanceof RoutesRecognized) {
-          // this.contentAnimationState = event.state.root.firstChild.data['animation'];
           this.contentAnimationState = Date.now().toString();
         }
       });
