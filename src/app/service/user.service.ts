@@ -21,7 +21,7 @@ export class UserService {
   constructor(
     private router: Router
   ) {
-    this.info = {};
+    // this.info = {};
     this.folders = [];
     this.contacts = [];
     this.todoEvents = [];
@@ -39,7 +39,7 @@ export class UserService {
   }
 
   signOut() {
-    this.info = {};
+    this.info = undefined;
     this.router.navigate(ROUTERLIST.signout);
   }
 
