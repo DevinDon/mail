@@ -2,12 +2,12 @@ import { animate, animation, style, group, query, trigger, useAnimation, transit
 
 /** 预设的时间线. */
 export const TimeLine = {
-  default: '0.5s ease-in-out',
-  delay: '0.5s 1s ease-in-out',
-  delayIn: '0.5s 1s ease-out',
-  delayOut: '0.5s 1s ease-in',
-  in: '0.5s ease-out',
-  out: '0.5s ease-in'
+  default: '0.4s ease-in-out',
+  delay: '0.4s 1s ease-in-out',
+  delayIn: '0.4s 1s ease-out',
+  delayOut: '0.4s 1s ease-in',
+  in: '0.4s ease-out',
+  out: '0.4s ease-in'
 };
 
 /** 透明 => 不透明, 上 => 下, 入场. */
