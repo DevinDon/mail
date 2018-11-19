@@ -1,9 +1,8 @@
-<app-header [@header]="headerAnimationState" (@header.done)="controller.deviceTypeIs('desktop') ? sidenav ? sidenav.open() : undefined : undefined"
-  *ngIf="user.isSignIn()"></app-header>
+<app-header [@header]="headerAnimationState" (@header.done)="sidenav && sidenav.open()" *ngIf="shouldShow"></app-header>
 
-<mat-sidenav-container [@container]="user.isSignIn() ? 'part' : 'full'" [ngClass]="{'content': user.isSignIn()}" class="separator">
+<mat-sidenav-container class="separator" [ngClass]="{'content': shouldShow}">
 
-  <mat-sidenav #sidenav [mode]="controller.deviceTypeIs('desktop') ? 'side' : 'over'" *ngIf="user.isSignIn()">
+  <mat-sidenav #sidenav [mode]="sidenavMode" *ngIf="shouldShow">
     <app-side></app-side>
   </mat-sidenav>
 
@@ -13,4 +12,4 @@
 
 </mat-sidenav-container>
 
-<app-footer [@footer]="footerAnimationState" *ngIf="user.isSignIn()"></app-footer>
+<app-footer [@footer]="footerAnimationState" *ngIf="shouldShow"></app-footer>

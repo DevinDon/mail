@@ -1,7 +1,7 @@
-import { transition, trigger, useAnimation, animate, style, keyframes } from '@angular/animations';
+import { animate, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { fromOpaqueFromBottomToTopOut, fromOpaqueFromTopToBottomOut, fromTransFromBottomToTopIn, fromTransFromLeftToRightIn, fromTransFromRightToLeftIn, fromTransFromTopToBottomIn, fromTransIn, TimeLine } from 'src/app/others/animation';
 import { ControllerService } from 'src/app/service/controller.service';
 import { UserService } from 'src/app/service/user.service';
@@ -12,36 +12,27 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./app.component.css'],
   animations: [
     trigger('header', [
-      transition(':enter', [useAnimation(fromTransFromTopToBottomIn, { params: { time: TimeLine.delayIn } })]),
-      transition(':leave', [useAnimation(fromOpaqueFromBottomToTopOut, { params: { time: TimeLine.delayOut } })])
+      transition(':enter', [useAnimation(fromTransFromTopToBottomIn, { params: { time: TimeLine.in } })]),
+      transition(':leave', [useAnimation(fromOpaqueFromBottomToTopOut, { params: { time: TimeLine.out } })])
     ]),
     trigger('container', [
-      transition('full => part', [
+      transition('* <=> *', [
         animate('2s', keyframes([
-          style({ padding: '0', opacity: 1, offset: 0 }),
-          style({ padding: '0', opacity: 0, offset: 0.25 }),
-          style({ padding: '32px 0 18px 0', opacity: 0, offset: 0.5 }),
-          style({ padding: '64px 0 36px 0', opacity: 1, offset: 1 })
-        ]))
-      ]),
-      transition('part => full', [
-        animate('2s', keyframes([
-          style({ padding: '64px 0 36px 0', opacity: 1, offset: 0 }),
-          style({ padding: '64px 0 36px 0', opacity: 0, offset: 0.25 }),
-          style({ padding: '0', opacity: 0, offset: 0.5 }),
-          style({ padding: '0', opacity: 1, offset: 1 })
+          style({ opacity: 1, offset: 0 }),
+          style({ opacity: 0, offset: 0.5 }),
+          style({ opacity: 1, offset: 1 })
         ]))
       ])
     ]),
     trigger('content', [
-      transition('void => left', [useAnimation(fromTransFromLeftToRightIn, { params: { time: TimeLine.delayIn } })]),
-      transition('void => right', [useAnimation(fromTransFromRightToLeftIn, { params: { time: TimeLine.delayIn } })]),
-      transition('void => top', [useAnimation(fromTransFromTopToBottomIn, { params: { time: TimeLine.delayIn } })]),
+      transition('void => left', [useAnimation(fromTransFromLeftToRightIn, { params: { time: TimeLine.in } })]),
+      transition('void => right', [useAnimation(fromTransFromRightToLeftIn, { params: { time: TimeLine.in } })]),
+      transition('void => top', [useAnimation(fromTransFromTopToBottomIn, { params: { time: TimeLine.in } })]),
       transition('* => *', [useAnimation(fromTransIn, { params: { time: TimeLine.in } })])
     ]),
     trigger('footer', [
-      transition(':enter', [useAnimation(fromTransFromBottomToTopIn, { params: { time: TimeLine.delayIn } })]),
-      transition(':leave', [useAnimation(fromOpaqueFromTopToBottomOut, { params: { time: TimeLine.delayOut } })])
+      transition(':enter', [useAnimation(fromTransFromBottomToTopIn, { params: { time: TimeLine.in } })]),
+      transition(':leave', [useAnimation(fromOpaqueFromTopToBottomOut, { params: { time: TimeLine.out } })])
     ])
   ]
 })
@@ -50,12 +41,15 @@ export class AppComponent implements OnInit {
   /** 侧边栏. */
   @ViewChild('sidenav')
   private sidenav: MatSidenav;
+  private sidenavMode: string;
   /** 顶栏动画状态. */
   public headerAnimationState: string;
   /** 内容区动画状态. */
   public contentAnimationState: string;
   /** 页脚动画状态. */
   public footerAnimationState: string;
+  /** 是否显示顶栏页脚. */
+  public shouldShow: boolean;
 
   constructor(
     public route: ActivatedRoute,
@@ -66,6 +60,8 @@ export class AppComponent implements OnInit {
     this.headerAnimationState = 'here';
     this.contentAnimationState = 'top';
     this.footerAnimationState = 'here';
+    this.shouldShow = false;
+    this.sidenavMode = this.controller.deviceTypeIs('desktop') ? 'side' : 'over';
   }
 
   ngOnInit() {
@@ -77,13 +73,12 @@ export class AppComponent implements OnInit {
         default: this.sidenav.toggle(); break;
       }
     });
-    setTimeout(() => {
-      this.router.events.subscribe(event => {
-        if (event instanceof RoutesRecognized) {
-          this.contentAnimationState = Date.now().toString();
-        }
-      });
-    }, 1500);
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.contentAnimationState = Date.now().toString();
+        this.shouldShow = !event.url.startsWith('/sign');
+      }
+    });
   }
 
 }
