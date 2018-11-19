@@ -70,31 +70,6 @@ const routes: Routes = [
       exception: 404
     }
   }
-  // {
-  //   path: '',
-  //   pathMatch: 'full',
-  //   component: ExceptionPageComponent,
-  //   data: { animation: 'home' }
-  // }, {
-  //   path: 'folder',
-  //   pathMatch: 'full',
-  //   redirectTo: 'folder/inbox'
-  // }, {
-  //   path: 'folder/inbox',
-  //   component: InboxComponent,
-  //   data: { animation: 'inbox' }
-  // }, {
-  //   path: 'todoevent/:id',
-  //   component: ExceptionPageComponent,
-  //   data: { animation: 'todoevent' }
-  // }, {
-  //   path: '**',
-  //   component: ExceptionPageComponent,
-  //   data: {
-  //     animation: 'exception',
-  //     exception: 404
-  //   }
-  // }
 ];
 
 @NgModule({
