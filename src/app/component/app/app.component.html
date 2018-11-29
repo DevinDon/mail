@@ -1,12 +1,12 @@
 <app-header [@header]="headerAnimationState" (@header.done)="sidenav && sidenav.open()" *ngIf="shouldShow"></app-header>
 
-<mat-sidenav-container class="separator" [ngClass]="{'content': shouldShow}">
+<mat-sidenav-container class="separator">
 
-  <mat-sidenav #sidenav [mode]="sidenavMode" *ngIf="shouldShow">
+  <mat-sidenav #sidenav [ngClass]="{'content': shouldShow}" [mode]="sidenavMode" *ngIf="shouldShow">
     <app-side></app-side>
   </mat-sidenav>
 
-  <mat-sidenav-content [@content]="contentAnimationState">
+  <mat-sidenav-content [ngClass]="{'content': shouldShow}" [@content]="contentAnimationState">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 

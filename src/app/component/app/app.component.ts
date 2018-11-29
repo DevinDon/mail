@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { fromOpaqueFromBottomToTopOut, fromOpaqueFromTopToBottomOut, fromTransFromBottomToTopIn, fromTransFromLeftToRightIn, fromTransFromRightToLeftIn, fromTransFromTopToBottomIn, fromTransIn, TimeLine } from 'src/app/others/animation';
 import { ControllerService } from 'src/app/service/controller.service';
+import { InitService } from 'src/app/service/init.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -39,8 +40,8 @@ import { UserService } from 'src/app/service/user.service';
 export class AppComponent implements OnInit {
 
   /** 侧边栏. */
-  @ViewChild('sidenav')
-  private sidenav: MatSidenav;
+  @ViewChild('sidenav') private sidenav: MatSidenav;
+  /** 侧边栏模式. */
   private sidenavMode: string;
   /** 顶栏动画状态. */
   public headerAnimationState: string;
@@ -55,7 +56,8 @@ export class AppComponent implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     public controller: ControllerService,
-    public user: UserService
+    public user: UserService,
+    private init: InitService
   ) {
     this.headerAnimationState = 'here';
     this.contentAnimationState = 'top';
@@ -79,6 +81,7 @@ export class AppComponent implements OnInit {
         this.shouldShow = !event.url.startsWith('/sign');
       }
     });
+    this.init.init();
   }
 
 }
