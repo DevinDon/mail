@@ -1,4 +1,29 @@
-<p>
-  folder works!
-</p>
+<mat-form-field>
+  <input #inputFilter matInput placeholder="filter">
+</mat-form-field>
+<button mat-raised-button color="primary">更新数据</button>
+
+<mat-table #table="matSort" matSort [dataSource]="dataSource">
+
+  <ng-container matColumnDef="user">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>用户名</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.user.login }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>标题</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="created_at">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>创建日期</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.created_at }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['user', 'title', 'created_at']"></mat-header-row>
+
+  <mat-row *matRowDef="let row; columns: ['user', 'title', 'created_at']"></mat-row>
+
+</mat-table>
+
+<mat-paginator #paginator [length]="dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 15]"></mat-paginator>
+
 <router-outlet></router-outlet>
