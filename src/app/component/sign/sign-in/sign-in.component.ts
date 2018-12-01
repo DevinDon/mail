@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/service/user.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,18 +10,32 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
 
+  status: string;
+  form: FormGroup;
+
   constructor(
-    private user: UserService,
-    private router: Router
-  ) { }
+    private former: FormBuilder,
+    private router: Router,
+    private user: UserService
+  ) {
+    this.form = former.group({
+      name: former.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(64)]),
+      password: former.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(64)])
+    });
+  }
 
   ngOnInit() { }
 
   signIn() {
-    this.user.signIn({ id: 123456 });
-    if (this.user.isSignIn()) {
-      this.router.navigate(['/']);
-    }
+    this.status = 'loading';
+    this.user.signIn({
+      name: this.form.get('name').value,
+      password: this.form.get('password').value
+    }).subscribe({
+      next: v => v.status ? this.router.navigateByUrl('/home') : this.form.setErrors({ notfound: true }),
+      error: e => console.error(`Sign in error: ${e}`),
+      complete: () => this.status = 'done'
+    }).unsubscribe();
   }
 
 }

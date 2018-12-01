@@ -1,0 +1,21 @@
+section {
+  background-color: #ffffffee;
+  padding: 2rem;
+  width: fit-content;
+}
+
+form {
+  width: 20rem;
+}
+
+form mat-form-field, .operation {
+  width: 100%;
+}
+
+.operation>.mat-raised-button {
+  width: 80%;
+}
+
+.operation>.mat-button {
+  width: 50%;
+}
