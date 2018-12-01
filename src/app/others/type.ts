@@ -67,10 +67,12 @@ export interface DeviceConfig<T> {
 export interface UserInfo {
   /** 用户 ID. */
   id?: number;
-  /** 用户名. */
-  name?: string;
   /** 用户邮箱地址. */
   email?: string;
+  /** 用户名. */
+  name?: string;
+  /** 密码. */
+  password?: string;
 }
 
 /** 服务器信息. */
@@ -93,6 +95,6 @@ export interface Server {
 /** API 返回数据的格式. */
 export interface Response<T = string> {
   code: number;
-  state: boolean;
+  status: boolean;
   data: T;
 }
