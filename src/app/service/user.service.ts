@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Contact, Folder, ToDoEvents, UserInfo } from '../others/type';
+import { Contact, Folder, ToDoEvents, UserInfo, Response } from '../others/type';
 import { ROUTERLIST } from '../others/config';
+import { APIService } from './api.service';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,7 @@ import { ROUTERLIST } from '../others/config';
 export class UserService {
 
   /** 用户信息. */
-  private info: UserInfo;
+  private user?: UserInfo;
 
   /** 文件夹. */
   public folders: Folder[];
@@ -19,6 +22,7 @@ export class UserService {
   public todoEvents: ToDoEvents[];
 
   constructor(
+    private api: APIService,
     private router: Router
   ) {
     // this.info = {};
@@ -28,23 +32,27 @@ export class UserService {
     this.mock();
   }
 
-  signIn(userInfo: UserInfo) {
-    // api.signIn(userInfo).subscription(r => this.info = r.success ? userInfo : {});
-    this.info = userInfo; // dev only
+  signIn(userInfo: UserInfo): Observable<Response<UserInfo>> {
+    // this.info = userInfo; // dev only
+    // this.api.signIn(userInfo).toPromise().then()
+    return this.api.signIn(userInfo)
+      .pipe(
+        map(v => (this.user = v.status ? v.data : undefined, v))
+      );
   }
 
   signUp(userInfo: UserInfo) {
     // api.signUp(userInfo).subscription(r => this.info = r.success ? userInfo : {});
-    this.info = userInfo; // dev only
+    this.user = userInfo; // dev only
   }
 
   signOut() {
-    this.info = undefined;
+    this.user = undefined;
     this.router.navigate(ROUTERLIST.signout);
   }
 
   isSignIn() {
-    return (this.info && this.info.id) ? true : false;
+    return (this.user && this.user.id) ? true : false;
   }
 
   mock() {
