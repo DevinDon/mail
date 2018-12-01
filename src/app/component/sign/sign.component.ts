@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/service/user.service';
-import { ROUTERLIST } from 'src/app/others/config';
 
 @Component({
   selector: 'app-sign',
@@ -9,11 +7,9 @@ import { ROUTERLIST } from 'src/app/others/config';
 })
 export class SignComponent implements OnInit {
 
-  public routerList = ROUTERLIST;
+  public backgroundImage: string;
 
-  constructor(
-    public user: UserService
-  ) { }
+  constructor() { }
 
   ngOnInit() { }
 
