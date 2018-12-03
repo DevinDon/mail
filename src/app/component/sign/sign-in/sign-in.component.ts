@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,13 +11,14 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class SignInComponent implements OnInit {
 
-  status: string;
   form: FormGroup;
+  status: string;
 
   constructor(
     private former: FormBuilder,
     private router: Router,
-    private user: UserService
+    private user: UserService,
+    private notification: NotificationService
   ) {
     this.form = former.group({
       name: former.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(64)]),
@@ -32,10 +34,14 @@ export class SignInComponent implements OnInit {
       name: this.form.get('name').value,
       password: this.form.get('password').value
     }).subscribe({
-      next: v => v.status ? this.router.navigateByUrl('/home') : this.form.setErrors({ notfound: true }),
-      error: e => console.error(`Sign in error: ${e}`),
+      next: v => v.status ? this.router.navigateByUrl('/home') : this.notification.notice('用户名或密码错误.'),
+      error: e => {
+        this.notification.notice('网络错误, 请稍后重试.');
+        console.error(`Sign in error: ${e}`);
+        this.status = 'done';
+      },
       complete: () => this.status = 'done'
-    }).unsubscribe();
+    });
   }
 
 }
