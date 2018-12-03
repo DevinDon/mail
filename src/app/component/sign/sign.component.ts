@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-sign',
@@ -9,7 +10,11 @@ export class SignComponent implements OnInit {
 
   public backgroundImage: string;
 
-  constructor() { }
+  constructor(
+    private api: APIService
+  ) {
+    this.backgroundImage = `url(assets/background-image-${Math.ceil(Math.random() * 5)}.jpg)`;
+  }
 
   ngOnInit() { }
 
