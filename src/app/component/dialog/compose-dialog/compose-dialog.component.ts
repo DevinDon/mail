@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Mail } from '../../../others/type';
-import { UserService } from 'src/app/service/user.service';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { UserService } from 'src/app/service/user.service';
+import { Mail } from 'src/app/others/type';
 
 @Component({
   selector: 'app-compose-dialog',
