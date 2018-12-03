@@ -1,7 +1,11 @@
-<mat-form-field>
-  <input #inputFilter matInput placeholder="filter">
-</mat-form-field>
-<button mat-raised-button color="primary">更新数据</button>
+<header class="bottom-shadow">
+  <mat-form-field>
+    <input #inputFilter matInput placeholder="filter">
+  </mat-form-field>
+  <button mat-icon-button (click)="refresh()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+</header>
 
 <mat-table #table="matSort" matSort [dataSource]="dataSource">
 

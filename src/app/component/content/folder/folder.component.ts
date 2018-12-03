@@ -3,6 +3,7 @@ import { MatSort, MatPaginator, MatTableDataSource, MatPaginatorIntl } from '@an
 import { HttpClient } from '@angular/common/http';
 import { fromEvent } from 'rxjs';
 import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-folder',
@@ -17,7 +18,8 @@ export class FolderComponent implements OnInit {
   public dataSource: MatTableDataSource<any>;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     this.dataSource = new MatTableDataSource<any>();
     this.dataSource.data = [];
@@ -36,6 +38,10 @@ export class FolderComponent implements OnInit {
   getData() {
     this.http.get<any>('https://api.github.com/search/issues?q=repo:angular/material2&page=1')
       .subscribe(data => this.dataSource.data = data.items);
+  }
+
+  refresh() {
+    this.router.navigateByUrl(this.router.url);
   }
 
 }
