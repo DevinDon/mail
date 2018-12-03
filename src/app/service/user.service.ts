@@ -33,22 +33,23 @@ export class UserService {
   }
 
   signIn(userInfo: UserInfo): Observable<Response<UserInfo>> {
-    // this.info = userInfo; // dev only
-    // this.api.signIn(userInfo).toPromise().then()
-    return this.api.signIn(userInfo)
+    return this.api.postSignIn(userInfo)
+      .pipe(map(v => (this.user = v.status ? v.data : undefined, v)));
+  }
+
+  signUp(userInfo: UserInfo): Observable<Response<UserInfo>> {
+    return this.api.postSignUp(userInfo)
+      .pipe(map(v => (this.user = v.status ? v.data : undefined, v)));
+  }
+
+  signOut(): Observable<Response<any>> {
+    return this.api.postSignOut()
       .pipe(
-        map(v => (this.user = v.status ? v.data : undefined, v))
+        map(v => {
+          this.user = v.status ? undefined : this.user;
+          return v;
+        })
       );
-  }
-
-  signUp(userInfo: UserInfo) {
-    // api.signUp(userInfo).subscription(r => this.info = r.success ? userInfo : {});
-    this.user = userInfo; // dev only
-  }
-
-  signOut() {
-    this.user = undefined;
-    this.router.navigate(ROUTERLIST.signout);
   }
 
   isSignIn() {
