@@ -1,0 +1,18 @@
+section {
+  background-color: #ffffffee;
+  padding: 2rem;
+  width: fit-content;
+}
+
+form {
+  width: 20rem;
+}
+
+form mat-form-field, .operation {
+  width: 100%;
+}
+
+mat-horizontal-stepper {
+  width: 100%;
+  background-color: inherit;
+}

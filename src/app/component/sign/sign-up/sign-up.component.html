@@ -1,3 +1,64 @@
-<p>
-  sign-up works!
-</p>
+<section class="bottom-shadow right-shadow" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+
+  <header>
+    <h2>成为新用户</h2>
+  </header>
+
+  <form [formGroup]="form" autocomplete="off" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+    <mat-horizontal-stepper [linear]="true">
+
+      <mat-step label="用户名" [stepControl]="form.get('name')">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+          <mat-form-field>
+            <mat-placeholder>
+              <mat-icon>person</mat-icon>
+              <span>用户名</span>
+            </mat-placeholder>
+            <input #inputName matInput formControlName="name" type="text">
+            <!-- <button mat-button matSuffix (click)="isUsable()" [disabled]="this.form.get('name').invalid">检查可用性</button> -->
+            <!-- <span matSuffix>{{ status === 'loading' ? '正在检测' : usable ? '可以使用' : '无法使用' }}</span> -->
+            <mat-icon matSuffix [ngStyle]="{'color': status === 'loading' ? 'black' : usable ? 'green' : 'red'}">{{ status === 'loading' ? 'more_horiz' : usable ? 'check' : 'close' }}</mat-icon>
+            <mat-hint>输入 / 上限</mat-hint>
+            <mat-hint align="end">{{ this.form.get('name').value.length }} / 64</mat-hint>
+            <mat-error *ngIf="form.get('name').hasError('required')">用户名为必填项</mat-error>
+            <mat-error *ngIf="form.get('name').hasError('minlength')">用户名最短为 6 位</mat-error>
+            <mat-error *ngIf="form.get('name').hasError('maxlength')">用户名最长为 64 位</mat-error>
+          </mat-form-field>
+          <div class="operation" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+            <a mat-button [routerLink]="[ '/sign/in' ]">返回登录</a>
+            <button mat-raised-button matStepperNext color="primary" [disabled]="!usable">下一步</button>
+          </div>
+        </div>
+      </mat-step>
+
+      <mat-step label="密码" editable="false" [stepControl]="form.get('password')">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+          <mat-form-field>
+            <mat-placeholder>
+              <mat-icon>vpn_key</mat-icon>
+              <span>密码</span>
+            </mat-placeholder>
+            <input matInput formControlName="password" type="password">
+            <mat-hint>输入 / 上限</mat-hint>
+            <mat-hint align="end">{{ this.form.get('password').value.length }} / 64</mat-hint>
+            <mat-error *ngIf="form.get('password').hasError('required')">密码为必填项</mat-error>
+            <mat-error *ngIf="form.get('password').hasError('minlength')">密码最短为 6 位</mat-error>
+            <mat-error *ngIf="form.get('password').hasError('maxlength')">密码最长为 64 位</mat-error>
+          </mat-form-field>
+          <div class="operation" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+            <button mat-button matStepperPrevious>重填用户名</button>
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="signUp()">注册</button>
+          </div>
+        </div>
+      </mat-step>
+
+    </mat-horizontal-stepper>
+  </form>
+
+  <footer>
+    <p>夜寒苏 Copyright 2018 - 2019</p>
+  </footer>
+
+</section>
+
+<mat-progress-bar mode="indeterminate" [ngStyle]="{'opacity': status === 'loading' ? 1 : 0}"></mat-progress-bar>
