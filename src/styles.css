@@ -7,6 +7,31 @@ body {
   font-family: 'Consolas', '微软雅黑 Light', '微软雅黑', sans-serif;
 }
 
+a, a:hover, a:focus, a:visited, a:link {
+  text-decoration-line: none;
+  color: inherit;
+}
+
+a::after {
+  content: '';
+  background-color: black;
+  width: 0;
+  height: 0.1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition-delay: 50ms;
+  transition-duration: 350ms;
+  transition-timing-function: ease-in-out;
+  transition-property: opacity width;
+}
+
+a:hover::after {
+  width: 100%;
+  opacity: 1;
+}
+
 /** 弹窗无外边距. */
 .no-margin mat-dialog-container {
   margin: 0;
@@ -23,7 +48,7 @@ body {
 }
 
 /** 弹窗占据窗口大小. */
-.full-size mat-dialog-container, .full-size .dialog {
+.full-size mat-dialog-container {
   min-height: 100vh;
   height: 100vh;
   max-height: 100vh;
@@ -51,7 +76,7 @@ body {
 
 /** 设置滚动条的样式. */
 ::-webkit-scrollbar {
-  width: 0;
+  width: 0.1rem;
 }
 
 /** 占据所有空余. */
