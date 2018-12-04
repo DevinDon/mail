@@ -25,7 +25,7 @@ export class UserService {
     private api: APIService,
     private router: Router
   ) {
-    // this.info = {};
+    this.user = { id: 1 };
     this.folders = [];
     this.contacts = [];
     this.todoEvents = [];
@@ -69,12 +69,12 @@ export class UserService {
       {
         name: 'Devin Don',
         mail: 'DevinDon@Foxmail.com',
-        head: 'https://upload.wikimedia.org/wikipedia/commons/c/c0/Lin_Chi-Ling_%28cropped%29.jpg'
+        head: 'assets/user.jpg'
       },
       {
         name: '夜寒苏',
         mail: 'Devin9598@Foxmail.com',
-        head: 'https://upload.wikimedia.org/wikipedia/commons/c/c0/Lin_Chi-Ling_%28cropped%29.jpg'
+        head: 'assets/user.jpg'
       }
     ];
 
