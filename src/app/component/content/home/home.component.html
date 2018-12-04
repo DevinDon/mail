@@ -1,3 +1,90 @@
-<p>
-  home works!
-</p>
+<section class="full" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="16px">
+
+  <div class="row" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+    <mat-card id="notification" fxFlex="100%">
+      <mat-card-header>
+        <mat-card-title>早上好</mat-card-title>
+        <mat-card-subtitle>夜寒苏</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>这里是网站公告, 很长很长.</p>
+        <p>可能会有好几段.</p>
+        <p>可能会有好几段.</p>
+        <p>对, 就是这样.</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="row" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+    <mat-card id="mail" fxFlex="60%">
+      <mat-card-header>
+        <mat-card-title>
+          <a [routerLink]="[ '/folder/inbox' ]">未读邮件</a>
+        </mat-card-title>
+        <mat-card-subtitle>
+          0 封
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card id="event" fxFlex="40%" fxFlexFill.lt-sm>
+      <mat-card-header>
+        <mat-card-title>待办事件</mat-card-title>
+        <mat-card-subtitle>1 件</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="row" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+    <mat-card id="draft" fxFlex="50%">
+      <mat-card-header>
+        <mat-card-title>
+          <a [routerLink]="[ '/folder/draft' ]">草稿箱</a>
+        </mat-card-title>
+        <mat-card-subtitle>Draft</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
+    <mat-card id="contact" fxFlex="50%">
+      <mat-card-header>
+        <mat-card-title>联系人</mat-card-title>
+        <mat-card-subtitle>Contact</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="row" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+    <mat-card id="information" fxFlex="40%">
+      <mat-card-header>
+        <mat-card-title>用户信息</mat-card-title>
+        <mat-card-subtitle>Information</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card id="setting" fxFlex="60%">
+      <mat-card-header>
+        <mat-card-title>系统设置</mat-card-title>
+        <mat-card-subtitle>Setting</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</section>
