@@ -15,8 +15,6 @@
               <span>用户名</span>
             </mat-placeholder>
             <input #inputName matInput formControlName="name" type="text">
-            <!-- <button mat-button matSuffix (click)="isUsable()" [disabled]="this.form.get('name').invalid">检查可用性</button> -->
-            <!-- <span matSuffix>{{ status === 'loading' ? '正在检测' : usable ? '可以使用' : '无法使用' }}</span> -->
             <mat-icon matSuffix [ngStyle]="{'color': status === 'loading' ? 'black' : usable ? 'green' : 'red'}">{{ status === 'loading' ? 'more_horiz' : usable ? 'check' : 'close' }}</mat-icon>
             <mat-hint>输入 / 上限</mat-hint>
             <mat-hint align="end">{{ this.form.get('name').value.length }} / 64</mat-hint>

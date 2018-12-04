@@ -34,10 +34,12 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    fromEvent(this.inputName.nativeElement, 'keydown')
-      .pipe(distinctUntilChanged())
-      .subscribe(v => this.usable = false);
-    fromEvent(this.inputName.nativeElement, 'keyup')
+    fromEvent(this.inputName.nativeElement, 'input')
+      .pipe(
+        distinctUntilChanged()
+      )
+      .subscribe(v => (this.usable = false, this.form.get('name').valid && (this.status = 'loading')));
+    fromEvent(this.inputName.nativeElement, 'input')
       .pipe(
         distinctUntilChanged(),
         debounceTime(500),
