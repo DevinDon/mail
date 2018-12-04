@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { UserService } from 'src/app/service/user.service';
 import { fromEvent } from 'rxjs';
 import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
+import { ControllerService } from 'src/app/service/controller.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,11 +18,12 @@ export class SignUpComponent implements OnInit {
   @ViewChild('inputName') inputName: ElementRef<HTMLInputElement>;
 
   public form: FormGroup;
-  public status: string;
+  // public status: string;
   public usable: boolean;
 
   constructor(
     private api: APIService,
+    private controller: ControllerService,
     private former: FormBuilder,
     private notification: NotificationService,
     private router: Router,
@@ -38,7 +40,7 @@ export class SignUpComponent implements OnInit {
       .pipe(
         distinctUntilChanged()
       )
-      .subscribe(v => (this.usable = false, this.form.get('name').valid && (this.status = 'loading')));
+      .subscribe(v => (this.usable = false, this.form.get('name').valid && (this.controller.status = 'loading')));
     fromEvent(this.inputName.nativeElement, 'input')
       .pipe(
         distinctUntilChanged(),
@@ -50,7 +52,7 @@ export class SignUpComponent implements OnInit {
   }
 
   isUsable() {
-    this.status = 'loading';
+    this.controller.status = 'loading';
     this.api.getUser({ name: this.form.get('name').value })
       .subscribe({
         next: v => {
@@ -60,16 +62,16 @@ export class SignUpComponent implements OnInit {
         error: e => {
           this.usable = false;
           this.notification.notice('网络错误, 请稍后重试.');
-          this.status = 'error';
+          this.controller.status = 'error';
         },
         complete: () => {
-          this.status = 'done';
+          this.controller.status = 'done';
         }
       });
   }
 
   signUp() {
-    this.status = 'loading';
+    this.controller.status = 'loading';
     this.user.signUp({
       name: this.form.get('name').value,
       password: this.form.get('password').value
@@ -83,10 +85,10 @@ export class SignUpComponent implements OnInit {
         }
       },
       error: e => {
-        this.status = 'error';
+        this.controller.status = 'error';
         this.notification.notice('网络错误, 请稍后重试.');
       },
-      complete: () => this.status = 'done'
+      complete: () => this.controller.status = 'done'
     });
   }
 

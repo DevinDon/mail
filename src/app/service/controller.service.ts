@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { fromEvent, Subject } from 'rxjs';
 import { ComposeDialogComponent } from '../component/dialog/compose-dialog/compose-dialog.component';
-import { Mail, Device } from '../others/type';
-import { Subject, fromEvent } from 'rxjs';
 import { getComposeDialogConfig } from '../others/config';
+import { Device, Mail } from '../others/type';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,15 @@ export class ControllerService {
   private device: Device;
   /** 组件通讯服务: 侧边导航栏展开 / 关闭. */
   private observableSidenavToggle: Subject<string>;
+  /** 状态, 是否正在加载等. */
+  public status: 'loading' | 'done' | 'error';
 
   constructor(
     private dialog: MatDialog
   ) {
-    this.observableSidenavToggle = new Subject<string>();
     this.device = this.getDeviceType();
+    this.observableSidenavToggle = new Subject<string>();
+    this.status = 'done';
     fromEvent(window, 'resize').subscribe(e => this.device = this.getDeviceType());
   }
 

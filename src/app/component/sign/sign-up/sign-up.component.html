@@ -44,7 +44,7 @@
             <mat-error *ngIf="form.get('password').hasError('maxlength')">密码最长为 64 位</mat-error>
           </mat-form-field>
           <div class="operation" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
-            <button mat-button matStepperPrevious>重填用户名</button>
+            <a mat-button matStepperPrevious>重填用户名</a>
             <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="signUp()">注册</button>
           </div>
         </div>
@@ -59,4 +59,4 @@
 
 </section>
 
-<mat-progress-bar mode="indeterminate" [ngStyle]="{'opacity': status === 'loading' ? 1 : 0}"></mat-progress-bar>
+<!-- <mat-progress-bar mode="indeterminate" [ngStyle]="{'opacity': status === 'loading' ? 1 : 0}"></mat-progress-bar> -->

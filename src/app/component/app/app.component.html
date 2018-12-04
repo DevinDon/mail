@@ -1,3 +1,4 @@
+<mat-progress-bar id="loading-bar" [ngStyle]="{'opacity': controller.status === 'loading' ? 1 : 0}" mode="query"></mat-progress-bar>
 <app-header [@header]="headerAnimationState" (@header.done)="sidenav && sidenav.open()" *ngIf="shouldShow"></app-header>
 
 <mat-sidenav-container class="separator">
